@@ -22,6 +22,9 @@ app.use(
   })
 );
 
+app.get('/api/newsflash', (req,res,next)=>{
+  res.json('this is working');
+});
 function runServer(port = PORT) {
   const server = app
     .listen(port, () => {
