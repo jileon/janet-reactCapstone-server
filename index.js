@@ -25,6 +25,7 @@ app.use(
   })
 );
 
+//========Routes===================================
 app.get('/api/newsflash', (req,res,next)=>{
   res.json('this is working');
 });
@@ -39,6 +40,13 @@ app.get("/api/newsflash/everything", (request, response) => {
     .catch(error => response.status(500).json(error));
   
 });
+
+
+
+
+
+
+
 
 function runServer(port = PORT) {
   const server = app
