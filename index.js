@@ -9,6 +9,7 @@ const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
 // const {dbConnect} = require('./db-knex');
 const categoryRouter = require('./Routes/categoryRouter');
+const searchRouter = require('./Routes/searchRouter')
 const app = express();
 
 
@@ -31,6 +32,7 @@ app.get('/api/newsflash', (req,res,next)=>{
 
 // Mount routers
 app.use('/api/newsflash', categoryRouter);
+app.use('/api/newsflash', searchRouter);
 
 
 
