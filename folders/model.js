@@ -1,25 +1,21 @@
-import mongoose from 'mongoose';
-import mongoose from 'mongoose'
+const mongoose = require('mongoose');
 
-const folderSchema = new mongoose.Schema({
-    foldername: {
-        type: String,
-        required: true,
-        unique: true
-      }
+
+const folderSchema = mongoose.Schema({
+  foldername: {type: String, required: true},
+  userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
 });
 
+folderSchema.index({ foldername: 1, userId: 1}, { unique: true });
+folderSchema.set('timestamps', true);
 folderSchema.methods.serialize = function(){
-  
-        return {
-          foldername: this.foldername,
-          id: this._id
-       
-        };
-   
-      
+  return {
+    foldername: this.foldername,
+    id: this._id,
+    userId: this.userId  
+  };    
 }
 
-const Folder = mongoose.model('Folder', folderSchema);
+const folderModel = mongoose.model('Folder', folderSchema);
 
-module.exports = {Folder};
+module.exports = folderModel;
