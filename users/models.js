@@ -2,7 +2,7 @@
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 
-mongoose.Promise = global.Promise;
+import mongoose from 'mongoose'
 
 const UserSchema = mongoose.Schema({
   username: {

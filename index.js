@@ -10,10 +10,9 @@ const passport = require('passport');
 const { router: usersRouter } = require('./users');
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 const { PORT, CLIENT_ORIGIN, DATABASE_URL  } = require('./config');
-const { dbConnect } = require('./db-mongoose');
 // const {dbConnect} = require('./db-knex');
 const categoryRouter = require('./Routes/categoryRouter');
-const searchRouter = require('./Routes/searchRouter')
+const searchRouter = require('./Routes/searchRouter');
 const app = express();
 
 mongoose.Promise = global.Promise;
