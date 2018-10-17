@@ -54,4 +54,19 @@ router.post('/', (req,res,next)=>{
 
 });
 
+router.delete('/:id', (req,res,next)=>{
+  const deleteId = req.params.id;
+  const userId = req.user.id;
+
+  return Folder.findOneAndRemove({_id: deleteId, userId})
+    .then(()=>{
+      res.status(204).end();
+    })
+    .catch(err => {
+      res.status(500).json({ message: 'Internal server error' });
+      console.log(err);
+    });
+});
+
+
 module.exports= router;
