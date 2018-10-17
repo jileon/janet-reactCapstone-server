@@ -19,4 +19,39 @@ router.get('/', (req,res,next)=>{
     .catch(err => next(err));
 });
 
+router.post('/', (req,res,next)=>{
+  const requiredField='foldername';
+  const user= req.user.username;
+  const userId = req.user.id;
+  const {foldername}= req.body;
+
+
+
+  const newFolder= {
+    foldername,
+    userId
+  };
+
+  if(!(requiredField in req.body)){
+    const message = 'Missing foldername in request body';
+    console.error(message);
+    return res.status(400).send(message);
+  }
+
+  
+  Folder.create(newFolder)
+    .then((results)=>{
+      console.log(req.originalUrl);
+      res.location(`${req.originalUrl}/${newFolder.id}`).status(201).json(results);
+    })
+    .catch(err => {
+      if (err.code === 11000) {
+        err = new Error('Folder name already exists');
+        err.status = 400;
+      }
+      next(err);
+    });
+
+});
+
 module.exports= router;
