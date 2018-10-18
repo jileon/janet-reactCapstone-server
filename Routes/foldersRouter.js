@@ -68,7 +68,9 @@ router.put('/:id', (req,res,next)=>{
 
   const updateArticles = {articles: req.body.articles, userId};
 
-  Folder.findByIdAndUpdate(updateId, {$set:updateArticles}, {new: true})
+
+//TODO:  need to fix so new duplicate articles are pushed
+  Folder.findByIdAndUpdate(updateId, {$push: {'articles':updateArticles}}, {new: true})
     .then((results)=>{
       res.json(results);
     })
