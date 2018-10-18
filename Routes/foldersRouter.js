@@ -54,6 +54,34 @@ router.post('/', (req,res,next)=>{
 
 });
 
+/* ========== PUT/UPDATE A SINGLE ITEM ========== */
+router.put('/:id', (req,res,next)=>{
+  const updateId = req.params.id;
+  const userId = req.user.id;
+  const requiredField = 'articles';
+  
+  if (!(requiredField in req.body)) {
+    const message = `Missing \`${requiredField}\` in request body`;
+    console.error(message);
+    return res.status(400).send(message);
+  }
+
+  const updateArticles = {articles: req.body.articles, userId};
+
+  Folder.findByIdAndUpdate(updateId, {$set:updateArticles}, {new: true})
+    .then((results)=>{
+      res.json(results);
+    })
+    .catch(err => {
+      if (err.code === 11000) {
+        err = new Error('Folder name already exists');
+        err.status = 400;
+      }
+      next(err);
+    });
+   
+});
+//deletes folders from db
 router.delete('/:id', (req,res,next)=>{
   const deleteId = req.params.id;
   const userId = req.user.id;
