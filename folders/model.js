@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const folderSchema = mongoose.Schema({
   foldername: {type: String, required: true},
   userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
+  // firstName:{type: String, ref: 'User', required: true},
   articles: [{title: String, source: String, url: String, imageUrl:String}],
 });
 
@@ -14,7 +15,8 @@ folderSchema.methods.serialize = function(){
     foldername: this.foldername,
     id: this._id,
     article: this.article,
-    userId: this.userId  
+    userId: this.userId  ,
+    firstName: this.firstName
   };    
 }
 
