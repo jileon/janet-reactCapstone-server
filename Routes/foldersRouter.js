@@ -68,7 +68,11 @@ router.post('/', (req,res,next)=>{
 
 });
 
-/* ========== PUT/UPDATE A SINGLE ITEM ========== */
+
+//TODO: Extract articles routes to an articles router
+
+//TODO:ARTICLE ROUTE
+/* ========== PUT/UPDATE SINGLE ARTICLE ITEM ========== */
 router.put('/:id', (req,res,next)=>{
   const updateId = req.params.id;
   const userId = req.user.id;
@@ -105,6 +109,35 @@ router.put('/:id', (req,res,next)=>{
     });
    
 });
+
+//TODO:ARTICLE ROUTE
+/* ========== PUT/UPDATE REMOVES SINGLE ARTICLE ITEM ========== */
+router.put('/removearticle/:id', (req,res,next)=>{
+  const updateFolderId = req.params.id;
+  const userId = req.user.id;
+  const requiredField = 'articleId';
+  const articleId = req.body.articleId;
+  if (!(requiredField in req.body)) {
+    const message = `Missing \`${requiredField}\` in request body`;
+    console.error(message);
+    return res.status(400).send(message);
+  }
+
+
+
+  //TODO: fix front end to 
+  //TODO: FIX need to fix so new duplicate articles are pushed
+  Folder.update({_id:updateFolderId, userId:userId}, {$pull:{articles:{_id :articleId  }}})
+    .then((results)=>{
+      res.json(results);
+    })
+    .catch(err => { 
+      next(err);
+    });
+   
+});
+
+/* ========== DELETES A SINGLE ARTICLE FORM ========== */
 //deletes folders from db
 router.delete('/:id', (req,res,next)=>{
   const deleteId = req.params.id;
