@@ -80,13 +80,20 @@ router.put('/:id', (req,res,next)=>{
     return res.status(400).send(message);
   }
 
-  const newArticle = {...req.body.article, userId};
+  // console.log(req.body);
+  // const newArticle = {...req.body.article, userId};
+  const newArticle={
+    title:req.body.article.title,
+    image:req.body.article.image,
+    description:req.body.article.description,
+    url:req.body.article.url
+  };
 
-
-//TODO: fix front end to 
-//TODO: FIX need to fix so new duplicate articles are pushed
+  //TODO: fix front end to 
+  //TODO: FIX need to fix so new duplicate articles are pushed
   Folder.findByIdAndUpdate(updateId, {$push: {articles:newArticle}}, {new: true})
     .then((results)=>{
+      console.log(results)
       res.json(results);
     })
     .catch(err => {

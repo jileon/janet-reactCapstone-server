@@ -5,7 +5,7 @@ const folderSchema = mongoose.Schema({
   foldername: {type: String, required: true},
   userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
   // firstName:{type: String, ref: 'User', required: true},
-  articles: [{title: String, source: String, url: String, imageUrl:String}],
+  articles: [{title: String, source: String, url: String, image:String, description:String}],
 });
 
 folderSchema.index({ foldername: 1, userId: 1}, { unique: true });
