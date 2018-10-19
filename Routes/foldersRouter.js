@@ -19,6 +19,20 @@ router.get('/', (req,res,next)=>{
     .catch(err => next(err));
 });
 
+/* ==========GET FOLDER BY ID ========== */
+router.get('/:id', (req,res,next)=>{
+  const getId = req.params.id;
+  const user= req.user.username;
+  const userId = req.user.id;
+
+  Folder.findById(getId)
+    .then((results)=>{
+      res.json(results);
+    })
+    .catch(err => next(err));
+});
+
+/* ========== CREATE FOLDERS ========== */
 router.post('/', (req,res,next)=>{
   const requiredField='foldername';
   const user= req.user.username;
@@ -58,7 +72,7 @@ router.post('/', (req,res,next)=>{
 router.put('/:id', (req,res,next)=>{
   const updateId = req.params.id;
   const userId = req.user.id;
-  const requiredField = 'articles';
+  const requiredField = 'article';
   
   if (!(requiredField in req.body)) {
     const message = `Missing \`${requiredField}\` in request body`;
@@ -66,7 +80,7 @@ router.put('/:id', (req,res,next)=>{
     return res.status(400).send(message);
   }
 
-  const newArticle = {...req.body.articles[0], userId};
+  const newArticle = {...req.body.article, userId};
 
 
 //TODO: fix front end to 
