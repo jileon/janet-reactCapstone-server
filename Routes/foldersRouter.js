@@ -129,7 +129,6 @@ router.put('/removearticle/:id', (req,res,next)=>{
   //TODO: FIX need to fix so new duplicate articles are pushed
   Folder.update({_id:updateFolderId, userId:userId}, {$pull:{articles:{_id :articleId  }}})
     .then((results)=>{
-      console.log(results)
       return Folder.findById(updateFolderId);
     })
     .then((results)=>{
