@@ -4,7 +4,7 @@ const router = express.Router();
 const GET_URL = 'https://newsapi.org/v2/top-headlines';
 const {API_KEY} = require('../config');
 
-router.get('/everything', (request, response) => {
+router.get('/headlines', (request, response) => {
  
   // add the API_KEY from the server side, no need to expose it on the client
   const query = {params: {apiKey: API_KEY, country:'us'}};
