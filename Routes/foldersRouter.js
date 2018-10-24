@@ -90,7 +90,8 @@ router.put('/:id', (req,res,next)=>{
     title:req.body.article.title,
     image:req.body.article.image,
     description:req.body.article.description,
-    url:req.body.article.url
+    url:req.body.article.url,
+    source: req.body.article.source
   };
 
   //TODO: fix front end to 
