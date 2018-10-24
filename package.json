@@ -2,6 +2,9 @@
   "name": "thinkful-backend-template",
   "version": "1.0.0",
   "description": "Template for an Express backend",
+  "engines": {
+    "node": "10.11.0"
+  },
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
