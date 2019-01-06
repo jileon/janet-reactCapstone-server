@@ -141,3 +141,30 @@ articles: [{title: String, source: String, url: String, image:String, descriptio
 │   ├── PUT/:id
 
 ```
+
+### POST `/api/auth/login`
+
+```js
+// req.body
+{
+  username: String,
+  password: String
+}
+
+// res.body
+{
+  authToken: String
+}
+```
+
+### POST `/api/auth/refresh`
+
+```js
+// req.header
+Authorization: Bearer ${token}
+
+// res.body
+{
+  authToken: ${token}
+}
+```
