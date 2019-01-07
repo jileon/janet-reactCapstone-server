@@ -116,8 +116,6 @@ articles: [{title: String, source: String, url: String, image:String, descriptio
 │       ├── /login
 │       └── /refresh
 ├── /users
-│   └── GET
-│   └── GET /:id
 │   └── POST
 │       └── /
 ├── /newsflash
@@ -167,4 +165,133 @@ Authorization: Bearer ${token}
 {
   authToken: ${token}
 }
+```
+
+### POST `/api/users/`
+
+```js
+// req.body
+{
+  email: String,
+  username: String,
+  password: String,
+  firstname: String,
+  lastname: String
+}
+
+// res.body
+{
+  name: String,
+  username: String
+  firstName: String,
+  lastName: String,
+  id: String,
+}
+```
+
+### GET `newsflash/folder`
+
+```js
+// req.user
+{
+  userId: String,
+}
+
+// res.body
+
+{
+    id : String
+    foldername :String
+    userId : String
+    articles : Array
+    createdAt : String
+    updatedAt : String
+
+}
+```
+
+### GET `newsflash/folder/:id`
+
+```js
+// req.params
+id: String;
+
+// res.body
+
+{
+  id: String;
+  foldername: String;
+  userId: String;
+  articles: Array;
+  createdAt: String;
+  updatedAt: String;
+}
+```
+
+### POST `newsflash/folder/`
+
+```js
+// req.body
+{
+  foldername: String,
+
+}
+
+// req.user
+{
+  id: String
+}
+```
+
+### PUT `newsflash/folder/:id`
+
+```js
+// req.params
+id: String,
+  // req.body
+  {
+    article: {
+      title,
+      image,
+      description,
+      url,
+      source
+    }
+  };
+```
+
+### PUT `newsflash/folder/removearticle/:id`
+
+```js
+// req.params
+id: String,
+  // req.user
+  {
+    id: String
+  };
+// req.body
+{
+  articleID: String;
+}
+```
+
+### GET
+
+#### `/api/newsflash/headlines`
+
+#### `/api/newsflash/health`
+
+#### `/api/newsflash/science`
+
+#### `/api/newsflash/sports`
+
+#### `/api/newsflash/technology'`
+
+#### `/api/newsflash/entertainment`
+
+#### `/api/newsflash/business`
+
+```js
+These endpoints makes a call to the api provided by https://newsapi.org/
+Please see their documentation for examples of the response objects.
 ```
