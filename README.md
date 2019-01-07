@@ -53,6 +53,7 @@ https://newsflashapp.herokuapp.com/
 
 ### The Front
 
+- Client info can be found here https://github.com/jileon/react-newsFlash-client
 - React
 - Redux
 - HTML
@@ -61,7 +62,6 @@ https://newsflashapp.herokuapp.com/
 
 ### The Back
 
-- Server info can be found here https://github.com/jileon/janet-reactCapstone-server
 - Node.js
 - Express.js
 - Mongoose
